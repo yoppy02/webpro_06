@@ -31,24 +31,31 @@ app.get("/janken", (req, res) => {
   let hand = req.query.hand;
   let win = Number( req.query.win );
   let total = Number( req.query.total );
-  console.log( {hand, win, total});
+  let lose = Number( req.query.lose );
+  console.log( {hand, win, total, lose} );
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
-  // 今はダミーで人間の勝ちにしておく
-  let judgement = '勝ち';
-  win += 1;
-  total += 1;
+  if ( hand == 'パー' && mun==1,hand == 'チョキ' && num==3, hand == 'グー' && num==2)judgement='勝ち';
+  else if (hand == 'グー' && num==1, hand == 'パー' && num==3, hand == 'チョキ' && num==2)judgement='あいこ';
+  else judgement='負け';
+  
+  if (judgement == '勝ち')win += 1, total += 1;
+  else if (judgement == 'あいこ') total += 1;
+  else (judgement == '負け') lose +=1,total+=1;
   const display = {
     your: hand,
     cpu: cpu,
     judgement: judgement,
     win: win,
     total: total
-  }
+  };
+  
+  
+
   res.render( 'janken', display );
 });
 
