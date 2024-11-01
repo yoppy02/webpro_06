@@ -8,13 +8,15 @@
     <p>あなたの手は<%= your %>です．</p>
     <p>コンピュータは<%= cpu %>です．</p>
     <p>判定：<%= judgement %></p>
-    <p>現在<%= total %>試合中<%= win %>勝しています．</p>
+    <p>現在<%= total %>試合中<%= win %>勝，<%= lose%>敗しています．</p>
     <hr>
     <form action="/janken">
         <input type="text" name="hand" required>
         <label for="hand">次は何を出す？</label>
         <input type="hidden" name="win" value="<%= win %>">
         <input type="hidden" name="total" value="<%= total %>">
+        <input type="hidden" name="lose" value="<%= lose %>">
+        <input type="hidden" name="all" value="<%= all %>">
         <input type="submit" values="じゃんけん　ポン">
     </form>   
 </body>
