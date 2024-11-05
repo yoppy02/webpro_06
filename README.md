@@ -6,7 +6,9 @@
 app5.js | プログラム本体
 public/janken.html | ジャンケンの開始画面
 public/janken.ejs | ejsファイル
+
 2024/10/29
+2024/11/5
 ```javascript
 console.log("Hello");
 ```
