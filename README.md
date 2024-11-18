@@ -12,6 +12,7 @@ public/6charactorseet.ejs | キャラクターシート作成用ejsファイル
 pcにnode.jsが入っていない場合はnode.jsをインストールし，使用するファイルにnpnが入っていない場合インストールする
 1.  node.jsのインストール</br>
 2.  npn install
+
 入っているときはここから
 
 1. ```node app5.js```をターミナルに書き起動する
