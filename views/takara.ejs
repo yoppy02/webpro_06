@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>宝あて</title>
+</head>
+<body>
+    <h2>宝あてにチャレンジ！</h2>
+    <p>このゲームでは、10個のドアの中に，宝が隠されています．この中から宝を探し出してください!</p>
+    <p>あなた選択は<%= your %>です．</p>
+    <p>判定：<%= judgement %></p>
+    <p>あたりは<%=tresure%>でした．</p>
+    <p>現在<%= total %>回チャレンジしてあたりを<%= get %>回取り，<%= none %>回はずれています．</p>
+    <p>成功確率は<%= per %>です．</p>
+    <hr>
+    <form action="/takara" method="get">
+        <p>どこを選ぶ？</p>
+        <input type="radio" name="radio" id="door0" value="0">
+        <label for="door0">ドア0</label><br>
+        <input type="radio" name="radio" id="door1" value="1">
+        <label for="door1">ドア1</label><br>
+        <input type="radio" name="radio" id="door2" value="2">
+        <label for="door2">ドア2</label><br>
+        <input type="radio" name="radio" id="door3" value="3">
+        <label for="door3">ドア3</label><br>
+        <input type="radio" name="radio" id="door4" value="4">
+        <label for="door4">ドア4</label><br>
+        <input type="radio" name="radio" id="door5" value="5">
+        <label for="door5">ドア5</label><br>
+        <input type="radio" name="radio" id="door6" value="6">
+        <label for="door6">ドア6</label><br>
+        <input type="radio" name="radio" id="door7" value="7">
+        <label for="door7">ドア7</label><br>
+        <input type="radio" name="radio" id="door8" value="8">
+        <label for="door8">ドア8</label><br>
+        <input type="radio" name="radio" id="door9" value="9">
+        <label for="door9">ドア9</label><br>
+        <input type="submit" values="OK？">
+        <input type="hidden" name="get" value="<%= get %>">
+        <input type="hidden" name="none" value="<%= none %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="hidden" name="per" value="<%= per %>">
+        <input type="hidden" name="all" value="<%= all %>">
+    </form> 

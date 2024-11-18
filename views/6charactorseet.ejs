@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>call_of_cthulhu_6_charactorseet</title>
+</head>
+<body>
+    <h2>キャラシ作成，難易度</h2>
+    <form action="/6charactorseet"> 
+    <p>難易度</p>
+    <input type="radio" name="radio" id="easy" value="1">
+    <label for="easy">easy</label><br>
+    <input type="radio" name="radio" id="normal" value="2">
+    <label for="normal">normal</label><br>
+    <input type="radio" name="radio" id="hard" value="3">
+    <label for="hard">hard</label><br>
+    <input type="submit" values="OK？">
+    <p>作成結果</p>
+    <li>STR=<%= str %></li>
+    <li>CON=<%= dex %></li>
+    <li>SIZ=<%= siz %></li>
+    <li>DEX=<%= dex %></li>
+    <li>APP=<%= App %></li>
+    <li>INT=<%= int %></li>
+    <li>POW=<%= pow %></li>
+    <li>EDU=<%= edu %></li>
+    <li>幸運=<%= luck %></li>
+    <li>ダメージボーナス=<%= db %></li>
+    <li>san=<%= san %></li>
+    <li>HP=<%= HP %></li>
+    <li>MP=<%= MP %></li>
+    <li>アイディア=<%= idea %></li>
+    <li>知識=<%= tishiki %></li>
+    <li>職業ポイント=<%= syoku %></li>
+    <li>趣味ポイント=<%= syumi %></li>  
+    </form>
+
+        
+</body>
+</html>

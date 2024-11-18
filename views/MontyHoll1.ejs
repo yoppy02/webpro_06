@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Monty Holl1</title>
+</head>
+<body>
+    <p>あなたの1回目の選択は<%= your1 %>です．</p>
+    <p>開けられたドアは<%= open %>です</p>
+    <p>あなたの2回目の選択は<%=your2%>です．<p>
+    <p>判定：<%= judgement %></p>
+    <p>あたりは<%=tresure%>でした．</p>
+    <p>現在<%= total %>回チャレンジしてあたりを<%= get %>回取り，<%= none %>回はずれています．</p>
+    <p>成功確率は<%= per >です．</p>
+    <p>選択を変更してあたりを選んだ確率は<%= per1 %>,選択を変更せずにあたりを選んだ確率は<%= per2 %>です．</p>
+    <p></p>
+    <hr>
+    <form action="/MontyHoll1">
+        <input type="radio" name="doors" required>
+        <label for="doors">どこを選ぶ？</label>
+        <input type="radio" name="doors1" id="door1" value="ドア1">
+        <label for="door1">ドア1</label><br>
+        <input type="radio" name="doors1" id="door2" value="ドア2">
+        <label for="door2">ドア2</label><br>
+        <input type="radio" name="doors1" id="door3" value="ドア3">
+        <label for="door3">ドア3</label><br>
+        <input type="radio" name="doors1" id="door4" value="ドア4">
+        <label for="door4">ドア4</label>
+        <input type="submit" values="OK？">
+        <input type="hidden" name="your1" value="<%= your1 %>">
+        <input type="hidden" name="open" value="<%= open %>">
+        <input type="hidden" name="door01" value="<%= door01 %>">
+        <input type="hidden" name="door02" value="<%= door02 %>">
+        <input type="hidden" name="door03" value="<%= door03 %>">
+    </form> 
+    <form action="/MontyHoll2">
+        <input type="radio" name="doors2" id="door1" value="ドア<%=door01%>">
+        <label for="door1">ドア<%=door01%></label><br>
+        <input type="radio" name="doors2" id="door2" value="ドア<%=door02%>">
+        <label for="door2">ドア<%=door02%></label><br>
+        <input type="radio" name="doors2" id="door3" value="ドア<%=door03%>">
+        <label for="door3">ドア<%=door03%></label><br>
+        <input type="submit" values="final answer?">
+        <input type="hidden" name="get" value="<%= get %>">
+        <input type="hidden" name="none" value="<%= none %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="hidden" name="stotal1" value="<%= stotel1 %>">
+        <input type="hidden" name="stotal2" value="<%= stotel2 %>">
+        <input type="hidden" name="per" value="<%= per %>">
+        <input type="hidden" name="per1" value="<%= per1 %>">
+        <input type="hidden" name="per2" value="<%= per2 %>">
+    </form>
+        
+</body>
+</html>
