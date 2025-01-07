@@ -1,5 +1,7 @@
 "use strict";
+
 const express = require("express");
+const session = require('express-session');
 const app = express();
 
 let bbs = [];  // 本来はDBMSを使用するが，今回はこの変数にデータを蓄える
@@ -115,14 +117,60 @@ app.post("/post", (req, res) => {
   res.json( {number: bbs.length } );
 });
 
+//app.post("/login", (req, res) => {
+  //const password = req.body.password;
+  //const id = req.body.id;
+  //console.log( [password, id] );
+  //if ((id.substring(0,3) == ("24G1"||"24g1") || id.substring(1,4)== "24G1" && id.substring(id.length - 16) == "s.chibakoudai.jp") && password.substring(0,3)== ("24G1" || "24g1")){
+    //res.json ({message: "OK, please wait..."});
+  //}
+  //else res.json( {message: "はメールアドレスまたはパスワードが違います" } );
+//});
+
+
+app.use(session({
+  secret: 'secret_key', // セッション暗号化用のキー
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // HTTPS の場合は true に設定
+}));
+
+app.use(express.urlencoded({ extended: true }));
+
 app.post("/login", (req, res) => {
-  const password = req.body.password;
-  const id = req.body.id;
-  console.log( [password, id] );
-  if (id.substring(0,3) == "24G1"||id.substring(1,4)== "24G1" && id.substring(id.length - 16) == "s.chibakoudai.jp"){
-    res.json ({message: "OK, please wait..."});
+  const id = req.body.id || "";
+  const password = req.body.password || "";
+
+  console.log("ログイン試行:", { id, password });
+
+  const validId = (id.startsWith("24G1") || id.startsWith("24g1"));
+  const validDomain = id.endsWith("s.chibakoudai.jp");
+  const validPassword = (password.startsWith("24G1") || password.startsWith("24g1"));
+
+  if ((validId || validDomain) && validPassword) {
+      res.json({ message: "OK, please wait..." });
+  } else {
+      res.json({ message: "メールアドレスまたはパスワードが違います。" });
   }
-  else res.json( {message: "IDまたはメールアドレスが違います" } );
 });
+
+app.get('/isLoggedIn', (req, res) => {
+  if (req.session.isLoggedIn) {
+      res.json({ loggedIn: true });
+  } else {
+      res.json({ loggedIn: false });
+  }
+});
+
+// ログアウト処理
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+      if (err) {
+          return res.status(500).json({ message: 'ログアウトに失敗しました' });
+      }
+      res.json({ message: 'ログアウトしました' });
+  });
+});
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

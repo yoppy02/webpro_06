@@ -86,3 +86,21 @@ document.querySelector('#check').addEventListener('click', () => {
         }
     });
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+    fetch('/isLoggedIn')
+        .then(response => {
+            if (!response.ok) throw new Error('サーバーエラー');
+            return response.json();
+        })
+        .then(data => {
+            if (!data.loggedIn) {
+                // 未ログインの場合、ログインページへリダイレクト
+                location.href = 'intro.html';
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert('ログイン状態の確認中にエラーが発生しました。');
+        });
+});
