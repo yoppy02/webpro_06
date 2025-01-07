@@ -150,7 +150,7 @@ app.post("/login", (req, res) => {
   if ((validId || validDomain) && validPassword) {
       res.json({ message: "OK, please wait..." });
   } else {
-      res.json({ message: "メールアドレスまたはパスワードが違います。" });
+      res.json({ message: "メールアドレスまたはパスワードもしくは両方が違います。" });
   }
 });
 
