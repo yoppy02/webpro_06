@@ -33,36 +33,26 @@ app.get("/luck", (req, res) => {
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
-  let win =  0|Number( req.query.win);
-  let total = 0|Number( req.query.total );
-  let lose = 0|Number( req.query.lose);
-  var all =0|Number( req.query.all );
-  console.log( {hand, win, total, lose, all} );
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
+  console.log( {hand, win, total});
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
-  if (all==0) cpu=' ';
-  else;
-  console.log( {cpu} );
-  if ( hand == 'パー' && num==1 || hand == 'チョキ' && num==3 || hand == 'グー' && num==2)judgement='勝ち';
-  else if (hand == 'グー' && num==1 || hand == 'パー' && num==3 || hand == 'チョキ' && num==2)judgement='あいこ';
-  else if (hand == 'チョキ' && num==1 || hand == 'グー' && num==3 || hand == 'パー' && num==2)judgement='負け';
-  else judgement = '';
-  if (judgement == '勝ち') win += 1,total += 1;
-  else if (judgement == 'あいこ');
-  else if (judgement == '負け') lose +=1,total += 1;
-  all += 1;
+  // ここに勝敗の判定を入れる
+  // 今はダミーで人間の勝ちにしておく
+  let judgement = '勝ち';
+  win += 1;
+  total += 1;
   const display = {
     your: hand,
     cpu: cpu,
     judgement: judgement,
     win: win,
-    total: total,
-    lose: lose,
-    all: all
-  };
+    total: total
+  }
   res.render( 'janken', display );
 });
 
@@ -115,14 +105,29 @@ app.post("/post", (req, res) => {
   res.json( {number: bbs.length } );
 });
 
-app.post("/login", (req, res) => {
-  const password = req.body.password;
-  const id = req.body.id;
-  console.log( [password, id] );
-  if (id.substring(0,3) == "24G1"||id.substring(1,4)== "24G1" && id.substring(id.length - 16) == "s.chibakoudai.jp"){
-    res.json ({message: "OK, please wait..."});
-  }
-  else res.json( {message: "IDまたはメールアドレスが違います" } );
+app.get("/bbs", (req,res) => {
+    console.log("GET /BBS");
+    res.json( {test: "GET /BBS" });
+});
+
+app.post("/bbs", (req,res) => {
+    console.log("POST /BBS");
+    res.json( {test: "POST /BBS"});
+})
+
+app.get("/bbs/:id", (req,res) => {
+    console.log( "GET /BBS/" + req.params.id );
+    res.json( {test: "GET /BBS/" + req.params.id });
+});
+
+app.put("/bbs/:id", (req,res) => {
+    console.log( "PUT /BBS/" + req.params.id );
+    res.json( {test: "PUT /BBS/" + req.params.id });
+});
+
+app.delete("/bbs/:id", (req,res) => {
+    console.log( "DELETE /BBS/" + req.params.id );
+    res.json( {test: "DELETE /BBS/" + req.params.id });
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
