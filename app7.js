@@ -143,11 +143,11 @@ app.post("/login", (req, res) => {
 
   console.log("ログイン試行:", { id, password });
 
-  const validId = (id.startsWith("24G1") || id.startsWith("24g1"));
+  const validId = (id.startsWith("s24G1") || id.startsWith("s24g1")||id.startsWith("S24G1") || id.startsWith("S24g1"));
   const validDomain = id.endsWith("s.chibakoudai.jp");
   const validPassword = (password.startsWith("24G1") || password.startsWith("24g1"));
 
-  if ((validId || validDomain) && validPassword) {
+  if ((validId && validDomain) && validPassword) {
       res.json({ message: "OK, please wait..." });
   } else {
       res.json({ message: "メールアドレスまたはパスワードもしくは両方が違います。" });
